@@ -1,11 +1,12 @@
 variable "keybase" {
-  // Mikes keybase, will be used for username/password generation
+  // Mike's keybase, will be used for username/password generation
   default = "setjump"
 }
 variable "people" {
   type = map
   // contains a list of peoples names to create aws accounts for
   default = {
+    "samyakgupta" : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/dOY4Hy4uzOiGBv2aGhXa+FLs9Au9X6n2KXvP4WI/a/Frdc16I9/Qh9j6l3GO+72IB8tmhGDVv/0BnIU12QMcishDyXh86BMFXTFhwu25qLoEEAImlW20zyk1E56wwSLxL4rJdqe9UZANyviCWnmhcty4NLESXpzl3YG7qioIQTPoGI2dCyM003ILWORMMtsgIl58x7pVQmNSFNCEQ+AB/DB4bEdW45inIi87S9IZzf5agD27ptPtbahs7taZ1Vrc24zy9mu6p06bpDr/NVBCcSbAMT+0DBhauCMcOu9z/9LzOwXtQkZdMQeFXEaqlDD1TH681zKUywg8fzDIVgRx samyak.gupta@samyakguptasmbp.clients.asia-pac.shell.com",
     "mukesh4338" : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0e9s7h/Wfm3J8YNN3/qO/MaxmETvTnmy8/J/fjljGFLsUSbqMcgttqGned6W5+NzTU3ITH2Is0Unc/+Or5+kuM9iJk0XEHCnuh/rvsx1yoPTnXzno4vJJznxWOjDw8nKzJaNo/u+uFXeEwG1zs6n8bQN5bQfBYTekUdJ35kNwMPJ8SvJ0jva0W92bSRXdyxyMXhytjQKiJtMQwtdJ6yYKZ70Y2ucgLfBNECrfyfuaSp0F61xdqY8lwQQgejOTD30uINp5taDydHi7uj4QjGrEugBHK14e3xxPgP37vM82TlAhdS9mWJohhOkBeM+yviPsz0Js1pP0bI8RqkX0he/X mukesh.adelkar@mukeshalkarsmbp.clients.asia-pac.shell.com",
     "eswarkp" : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCxyuux2lSDTPZ/VO/g6SxTji3WdO88iiVMYsVe1rF9fVOrrm9Kcg9lRoFs28NC4nd+kRUUjB8GvYGfoUa8DVtcCj3X7SsjwG7ycHVz/UVIj1b5/eqdR7lZgZ4gbTkWejQszcAJ7pV6UigJ9mzCmCSO64E3W5XnyIDZ9zxJyKyIzkUej6i9z121ZWdP0tpOM177yCita8A5TJwPZMvjtycJmD27InoLYK1Kr+Z+v8zpmoVOC1qGpA6xJpOKGkDMPfisbAx1QJnxuyBImJqOP2HrMcePQM9TGHJtdxhfHTJXzZ57/iPtXwxky18HV1xZCbu3C4FelWd050/a0R/UnOx eswaran.karuppiah@eswaranpiahsmbp.clients.asia-pac.shell.com",
     "sbatchu1" : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJ1w/fmc9lte4+XFzl8xRNpMrg5ngLuZuW++Y+5zzJOazFDVWGpDgThD9cF8wThoEO9+L3DIYwylzLJveq8Ct/4ijiTaHISnvn5zsLMLh9mWgP8coNmpSuYQkxtnRTV3GonzLbT6fGwuFRDeJucgrowkFeKl7jfJtMvswqaIgD3M+h4ZwpcnYSD+fxCogwRcEnz1gZQcSWjS+sA1ByJNrj3jkACVGUcmXl4GIxN1yTwXHnfIn8WNPUCEy8puDDKrId2De7fVz0mv6aUrbyj0boTn3OWeCdSXngCVnBlhondHd7G8Inzzkr12d/v+GZRm/Rz8W7kou/1MRZLUHmRRUZ sairamgopal.batchu@sairamgopalbatchus-MacBook-Pro.local",
