@@ -6,6 +6,5 @@ variable "people" {
   type = map
   // contains a list of peoples names to create aws accounts for
   default = {
-    "todo-replace-me" : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC0R0b5LVl9FY6lJNroxzIOjDcXF3VyLy7VYQ+EqcIiaK6vuacEGkFXO0093xfXO7ePOMBRBC25duKuNHfYw/DuroQq7X163L+vMpfrcziN7c2/k1x8LXftT3G4oQIamP1rzBGfdh/t8ZQqQfza2kzKIjiHel6EtXbTyzzb2Y6CrSibXPhdpRDLP1c5I/1jyYNZHExBpQcdESM/ry/3YObkoqL6IdKNlCYp4nbx5lYu7PdogJBn6stYSYs1ei8EMuuwyCLAa+Ss2oq1QtFCrEzNtI9e4zftT+7Xo/8PyY4SqwMUYuKzuxZuy6kVNpfQ1+rYY4ZsEF7M7pWowat94BklmxmyPDhDOAoG1GUSZkBU3OSAr8p0CRpjAJ9JZ9H4EKVy73+u3CLu7MY5WombBJSdyvziDTpYGLGKEG7bsmYuiiyoxK5N1scouxhaQFSaV/kUJcgL9gMHporysNDiuxPsoDtYMSK1wfjZoBVLvbfvUUdo2FIGaoXXiiCnBy3G0uY0zbfkxeIdWiVMu+g+mXvBYGT26JtPfqd+Ib+gsky5zpVuxVzKexHSs35XLRYZqFNXFDkA3QLQouo8PIVCM1rN22eOznUTCQeRxLS8YEa0NeXycIwv2oYxdqFG+rU0Z7WyNnpvPoBBh91u9jzoq4fxg5o7+A9hOVH6mqqjpZOBVw== mhristof@chessell.local",
-  }
+    "mukesh4338" : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0e9s7h/Wfm3J8YNN3/qO/MaxmETvTnmy8/J/fjljGFLsUSbqMcgttqGned6W5+NzTU3ITH2Is0Unc/+Or5+kuM9iJk0XEHCnuh/rvsx1yoPTnXzno4vJJznxWOjDw8nKzJaNo/u+uFXeEwG1zs6n8bQN5bQfBYTekUdJ35kNwMPJ8SvJ0jva0W92bSRXdyxyMXhytjQKiJtMQwtdJ6yYKZ70Y2ucgLfBNECrfyfuaSp0F61xdqY8lwQQgejOTD30uINp5taDydHi7uj4QjGrEugBHK14e3xxPgP37vM82TlAhdS9mWJohhOkBeM+yviPsz0Js1pP0bI8RqkX0he/X mukesh.adelkar@mukeshalkarsmbp.clients.asia-pac.shell.com",  }
 }
