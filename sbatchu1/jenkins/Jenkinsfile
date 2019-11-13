@@ -1,0 +1,81 @@
+pipeline {
+   agent any
+
+   stages {
+      stage('README') {
+         steps {
+            dir('fluffy-new'){
+                git 'https://github.com/mhristof/fluffy-fiesta'
+                sh 'cat README.md'
+            }
+            // Get some code from a GitHub repository
+            
+
+            
+            // To run Maven on a Windows agent, use
+            // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+         }
+
+
+      }
+      stage('NewFileName'){
+        steps{
+          dir('fluffy-new'){
+              script{
+                  try{
+                       
+                           sh '''
+                           git checkout -b thomas_test_$BUILD_ID origin/thomas
+
+                           echo "hello! in try"
+                           cat NewFileName.txt'''
+                       
+                  }catch(error){
+                            println( error )
+                            sh '''
+                            echo "catch"
+                                pwd
+                                ls -al
+                                cat NewFileName.txt'''
+
+                            exit 0
+                       }
+                    
+                  }  
+              }
+
+          }
+
+        }
+          
+    
+        stage('New Branch'){
+            steps{
+                dir('fluffy-new'){
+                script{
+                    sh 'git checkout -b test_branch_$BUILD_ID'
+                        dir('test_folder'){
+                        sh '''touch test.txt
+                            date >> test.txt
+                            cat test.txt'''
+                }
+                sleep(5)
+                }
+                }
+            }
+
+
+            }
+
+            
+            
+            
+   }  
+
+    post{
+        always{
+            build job: 'freestyle-test-1'
+        }
+    }
+}
+  
