@@ -1,0 +1,68 @@
+pipeline{
+  agent any
+  stages
+  {
+     stage('Clone & Show') 
+        {  
+          steps {
+                sh 'rm -rf fluffy' 
+                
+                    dir("fluffy")
+                    {
+                       
+                        git 'https://github.com/mhristof/fluffy-fiesta'
+                        
+                        sh 'cat README.md'
+                    }
+                }
+         }
+         
+         
+       stage('Thomasbranch')
+        {
+            steps
+                {
+                    sh 'pwd'
+                    dir('fluffy')
+                    {
+                    sh 'git checkout thomas'
+                    
+                    sh 'cat New*'
+                    }
+                }
+        }    
+ 
+        stage('MynewBranch')
+        {
+            steps
+                {
+                    
+                    dir('fluffy')
+                    {
+                    sh 'git checkout -b gini'
+                    sh """
+                    mkdir mybranch
+                    dir mybranch
+                    pwd
+                    touch jenkins.txt  
+                    date > jenkins.txt
+                    cat jenkins.txt
+                    """
+                    }
+                }
+        }
+        
+        stage('post build')
+        {
+            steps 
+                {
+                    build job: 'Sai Ram/pipeline-test-1', wait: false
+                }
+       
+         
+            
+        }
+       
+  } 
+ }
+
