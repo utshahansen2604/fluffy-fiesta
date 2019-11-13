@@ -1,0 +1,32 @@
+node {
+    stage('Preparation'){//for the purpose of preparation
+    checkout([$class: 'GitSCM',
+    branches: [[name: 'origin/master']],
+    extensions: [[$class: 'WipeWorkspace']],
+    userRemoteConfigs: [[url: 'https://github.com/mhristof/fluffy-fiesta.git']]
+    ])
+    }
+    stage('Build'){//for the purpose of cloning,creating,reading files
+            sh 'cat README.md'
+            checkout([$class: 'GitSCM',
+            branches: [[name: 'origin/thomas']],
+            userRemoteConfigs: [[url: 'https://github.com/mhristof/fluffy-fiesta.git']]
+            ])
+            sh 'cat NewFileName.txt'
+        sh 'mkdir fluffy'
+        dir ("fluffy"){
+            def check_branch= sh(script: "git branch -a | grep 'Feature_Script'", returnStatus: true)
+            //echo "branch exists $check_branch"
+            if (check_branch)
+            {sh 'git checkout -b Feature_Script'}
+            else {
+                sh git checkout Feature_Script
+                }
+           sh 'mkdir bucket_Script'
+            dir ("bucket_script") {
+                sh 'echo "Abhi Sharma" > test.txt'
+                sh 'cat test.txt'
+            }
+            }
+        }
+    }
