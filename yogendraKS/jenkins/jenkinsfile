@@ -1,0 +1,31 @@
+node {
+   def mvnHome
+   stage('Preparation') { // for display purposes
+      // Get some code from a GitHub repository
+      sh 'rm -rf *'
+      
+      
+   }
+   stage('Build') {
+      
+      sh 'mkdir -p fluffy ; ls && cd  fluffy && git clone https://github.com/mhristof/fluffy-fiesta.git && cd fluffy-fiesta && ls && cat READ*' 
+      
+   }
+   stage('Thomas repo') {
+      dir("fluffy/fluffy-fiesta"){
+          sh 'git checkout thomas && git branch && cat NewFileName.txt && git checkout -b newbranch && git branch && mkdir newfolder  && cd newfolder  && echo "My comment:Yogendra" >> newfile && cat newfile && sleep 5'
+          
+      }
+   }
+   stage ("wait_prior_starting_smoke_testing") {
+    
+    sleep 5 // seconds
+   }
+   stage('post-build') {
+    parameters {
+        string(defaultValue: 0, description: 'test', name: 'counter')
+    }       
+       build job: 'Mukund/muk-scripted-1' , wait: false
+   }
+   
+}
