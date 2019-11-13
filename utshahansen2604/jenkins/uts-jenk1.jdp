@@ -23,7 +23,10 @@ node{
                 sh 'cat NewFileName.txt'
         }
 
-        
+        stage("===Sleep timer==="){
+                sleep 5
+        }
+
         stage("===Read from New Branch==="){
 
                 def check_branch= sh(script: "git branch -a | grep 'feat1' ", returnStatus: true) 
