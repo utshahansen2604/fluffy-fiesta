@@ -1,0 +1,42 @@
+node {
+   stage('Preparation') {
+      // Get some code from a GitHub repository
+      checkout([$class: 'GitSCM',
+      branches: [[name: 'origin/master']],
+      extensions: [[$class: 'WipeWorkspace']],
+      userRemoteConfigs: [[url: 'https://github.com/mhristof/fluffy-fiesta.git']]
+      ])
+      sh 'cat ./README.md'
+   }
+   
+    stage ('thomas'){
+      checkout([$class: 'GitSCM',
+      branches: [[name: 'origin/thomas']],
+      userRemoteConfigs: [[url: 'https://github.com/mhristof/fluffy-fiesta.git']]
+      ])
+      sh 'cat NewFileName.txt'
+    }
+    
+   stage('samyak') {
+       sh label: '', script: '''if [`git show-ref refs/heads/samyak`]
+        then
+        echo \'branch exists!\'
+        else
+        echo \'branch does not exist! Creating...\'
+        git checkout master
+        git checkout -b samyak
+        mkdir testcode
+        cd testcode
+        touch test.txt
+        echo "This is Samyak\'s text" > test.txt
+        fi
+        cat test.txt'''
+   }
+
+   stage('Results') {
+       sleep 5
+       build job: '../Abhi-Pipelines/Abhi-Test-1'
+   }
+   
+   exit 0
+}
