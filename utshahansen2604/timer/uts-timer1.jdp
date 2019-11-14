@@ -1,0 +1,13 @@
+//Utshahan Sen
+//Upstream Job
+node{
+
+    stage("===DECLARATION===")
+    {
+    build job: 'uts-demo-pp2', 
+    parameters: [
+        string(name: 'count', value: "1"),
+        
+    ]
+    }
+}

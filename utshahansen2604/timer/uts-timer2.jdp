@@ -1,0 +1,22 @@
+//Utshahan Sen
+//Downstream Job
+node{
+
+    stage("===INITIALIZATION===")
+    {
+        echo "===Running===";
+    }
+
+    stage("===BUILD===")
+    {
+        echo "===Building===";
+        //echo $passed_build_number_param;
+        def old_count = params['count'].toInteger()
+        new_count = old_count + 1
+        //print counter
+        echo "$new_count" 
+        
+    }
+
+
+}
