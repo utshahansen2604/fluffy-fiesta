@@ -1,0 +1,46 @@
+//Utshahan Sen
+node{
+    
+        stage("===Git Prep==="){
+    
+            checkout([$class: 'GitSCM',
+            branches: [[name: 'origin/master']],
+            extensions: [[$class: 'WipeWorkspace']],
+            userRemoteConfigs: [[url: 'https://github.com/mhristof/fluffy-fiesta.git']]
+            ])
+        }
+    
+        stage("===Read README file==="){
+            
+                sh 'git checkout master'
+                sh 'cat README.md'
+        }
+        
+
+        stage("===Read from THOMAS Branch"){
+
+                sh 'git checkout thomas'
+                sh 'cat NewFileName.txt'
+        }
+
+        stage("===Sleep timer==="){
+                sleep 5
+        }
+
+        stage("===Read from New Branch==="){
+
+                def check_branch= sh(script: "git branch -a | grep 'feat1' ", returnStatus: true) 
+                //echo "branch exists ${check_branch}"
+                if (check_branch){ 
+                    sh 'git checkout -b feat1'
+                   }
+                else{
+                    sh 'git checkout feat1'
+                    }
+                    sh 'mkdir buck2'
+                    sh 'cd buck2'
+                    sh 'echo "Utshahan Sen" > test_$(BUILD_TAG).txt'
+                    //sh 'ls -la'    
+                    //sh 'cat NewFileName.txt'
+        }
+}

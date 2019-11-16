@@ -1,0 +1,12 @@
+//Utshahan Sen
+
+node{
+
+uts-count=""
+
+parameters {
+        String(defaultValue: true, description: '', name: 'count')
+    }
+
+build job: 'downstream-freestyle', parameters: [[$class: 'StringParameterValue', name: 'ParamA', value: paramAValue], 
+[$class: 'StringParameterValue', name: 'ParamB', value: paramBValue]]
