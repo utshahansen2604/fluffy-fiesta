@@ -1,0 +1,58 @@
+pipeline {
+    agent any
+    stages {
+        stage('create directory') {
+            steps {
+            sh """
+                mkdir fluffy_${BUILD_NUMBER}
+            """
+            }
+        }
+
+         stage('checkout master branch') {
+            steps {
+            dir("fluffy_${BUILD_NUMBER}") {
+               checkout(
+                   [$class: 'GitSCM',
+                   branches:[[name: 'origin/master']],
+                   extensions:[[$class: 'WipeWorkspace']],
+                   userRemoteConfigs:[[url:'https://github.com/mhristof/fluffy-fiesta.git']]
+                   ])
+                sh "pwd"
+                sh "cat README.md"
+            }
+            }
+            
+        }   
+          stage('checkout thomas branch') {
+            steps {
+            dir("fluffy_${BUILD_NUMBER}") {
+               checkout(
+                   [$class: 'GitSCM',
+                   branches:[[name: 'origin/thomas']],
+                   extensions:[[$class: 'WipeWorkspace']],
+                   userRemoteConfigs:[[url:'https://github.com/mhristof/fluffy-fiesta.git']]
+                   ])
+               
+                sh """
+                        pwd
+                        cat NewFileName.txt
+                        touch newfile_${BUILD_NUMBER}.txt
+                        echo "my comment" >> newfile_${BUILD_NUMBER}.txt
+                        cat newfile_${BUILD_NUMBER}.txt
+                    """
+            }
+            }
+        }   
+
+         
+    }
+
+    post {
+        always {
+            sleep(5)
+            echo "after bulid"
+            build job: 'Yogendra/Yogendra-Test4', wait:false, parameters: [[$class: 'StringParameterValue', name: 'counter', value: 0]]
+        }
+    }
+} 
