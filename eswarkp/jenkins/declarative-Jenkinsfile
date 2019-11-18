@@ -1,0 +1,42 @@
+pipeline {
+   agent any
+   stages {
+      stage('Build') {
+         steps {
+            dir("fluffy") {
+            // Get some code from a GitHub repository
+            git 'https://github.com/mhristof/fluffy-fiesta.git'
+            sh "cat README.md"
+            }
+         }
+      }
+      stage('Thomas Branch') {
+         steps {
+            sh """
+            git stash save
+            git checkout thomas
+            cat NewFileName.txt
+            """
+         }
+      }
+      stage('eswarb Branch') {
+         steps {
+             sh """
+            git checkout eswarb
+            rm -rf test
+            mkdir test
+            cd test
+            touch readme.txt
+            date > readme.txt
+            cat readme.txt
+            """
+         }
+      }
+   }
+   post {
+    success {
+      echo "Executing tarun pipeline"
+      build job: 'Tarun-jenkins/Tarun-test'
+    }
+  }
+}

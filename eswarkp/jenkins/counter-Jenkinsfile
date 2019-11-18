@@ -1,0 +1,13 @@
+node
+{
+    try {
+    print "DEBUG: parameter counter = ${params['counter']}"
+    def counter = params['counter'].toInteger()
+    counter = counter + 1
+    print counter
+    //build job : 'Ankit/script-pipeline', parameters : [[$class: 'StringParameterValue', name: 'counter', value: counter.toString()]]
+    } catch(e) {
+        print "error in the job $e"
+        throw e
+    }
+}
