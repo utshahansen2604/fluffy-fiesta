@@ -1,3 +1,7 @@
 - hosts: all
   roles:
     - jenkins
+- name: Deploy Jenkins service file
+  template:
+    src: templates/jenkins.service.template
+    dest: /etc/systemd/system/jenkins.service
