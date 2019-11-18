@@ -1,13 +1,23 @@
 ---
-# tasks file for roles/jenkins
-- name: install default-jre-for-ubuntu
-  package:
-    name: default-jre
-    state: latest
+# # tasks file for roles/jenkins
+# - name: install default-jre-for-ubuntu
+#   package:
+#     name: default-jre
+#     state: latest
       
-- name: Download Jenkins_war
-  get_url:
-    url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
-    dest: /usr/local/etc
-    mode: '0440'
+# - name: Download Jenkins_war
+#   get_url:
+#     url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+#     dest: /usr/local/etc
+#     mode: '0440'
 
+- name: Add and deploy jenkins service file to /etc/systemd/system/jenkins.service using the template module
+  template:
+    src: jenkins.service
+    dest: /etc/systemd/system/jenkins.service
+
+  
+- name: Start service jenkins, if not started
+  service:
+    name: jenkins
+    state: started
