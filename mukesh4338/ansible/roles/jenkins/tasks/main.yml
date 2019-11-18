@@ -1,0 +1,12 @@
+---
+# tasks file for roles/jenkins
+- name: install default-jre-for-ubuntu
+  package:
+    name: default-jre
+    state: latest
+      
+- name: Download Jenkins_war
+  get_url:
+    url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+    dest: /usr/local/etc
+    mode: '0440'
