@@ -1,13 +1,13 @@
-#---
-# - name: install_Java_package
-#   package: 
-#     name: default-jre
-#     state: present
-# - name: download war file
-#   get_url:
-#    url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
-#    dest: /usr/local/etc
-#    mode: '044'
+---
+- name: install_Java_package
+  package: 
+    name: default-jre
+    state: present
+- name: download war file
+  get_url:
+   url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+   dest: /usr/local/etc
+   mode: '044'
 
 
 
@@ -15,14 +15,14 @@
   template:
     src: jenkins.service
     dest: /etc/systemd/system/jenkins.service 
-  notify: 
-    - restart_jenkins
+  # notify: 
+  #   - restart_jenkins
   
-# - name: Start service jenkins, if not started
-#   systemd:
-#     name: jenkins
-#     daemon_reload: true
-#     state: started
+- name: Start service jenkins, if not started
+  systemd:
+    name: jenkins
+    daemon_reload: true
+    state: started
     
 
 # - name : Create new file and update it

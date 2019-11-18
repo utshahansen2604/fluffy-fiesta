@@ -1,8 +1,8 @@
 ---
 # handlers file for roles/jenkins
 
-- name: restart_jenkins
-  systemd:
-    name: jenkins
-    state: started
-    daemon_reload: true
+# - name: restart_jenkins
+#   systemd:
+#     name: jenkins
+#     state: started
+#     daemon_reload: true
