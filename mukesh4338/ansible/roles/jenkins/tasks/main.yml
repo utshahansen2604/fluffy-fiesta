@@ -10,3 +10,4 @@
     url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
     dest: /usr/local/etc
     mode: '0440'
+
