@@ -4,3 +4,4 @@
   systemd:
     state: restarted
     name: jenkins
+    daemon_reload: yes 

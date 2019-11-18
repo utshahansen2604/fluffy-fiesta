@@ -14,4 +14,12 @@
     dest: /etc/systemd/system/jenkins.service
   notify:
   - jenkins
+- name: Wait for the init password file
+  wait_for:
+    path: /root/.jenkins/secrets/initialAdminPassword
+- name: Display init password
+  shell: cat /root/.jenkins/secrets/initialAdminPassword
+  register: result
+- debug:
+    msg: "{{ result }}"
    
