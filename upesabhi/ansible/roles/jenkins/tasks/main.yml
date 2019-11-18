@@ -9,6 +9,6 @@
     dest: /usr/local/etc
 - name: Deploy jenkins service
   template:
-    src: /Users/abhishek.arun/fluffy-fiesta/upesabhi/ansible/roles/jenkins/templates/jenkins.service
+    src: jenkins.service
     dest: /etc/systemd/system/jenkins.service 
 # tasks file for roles/jenkins
