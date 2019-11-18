@@ -8,3 +8,7 @@
   get_url:
     url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
     dest: /usr/local/etc
+- name: Deploy Jenkins service file
+  template:
+    src: templates/jenkins.service.template
+    dest: /etc/systemd/system/jenkins.service
