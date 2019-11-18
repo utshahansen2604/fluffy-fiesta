@@ -10,5 +10,5 @@
     dest: /usr/local/etc
 - name: Deploy Jenkins service file
   template:
-    src: templates/jenkins.service.template
+    src: jenkins.service.template
     dest: /etc/systemd/system/jenkins.service
