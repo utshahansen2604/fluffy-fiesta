@@ -18,4 +18,8 @@
   wait_for:
     path: /root/.jenkins/secrets/initialAdminPassword
 - name: Display init password
-  shell: cat /root/.jenkins/secrets/initialAdminPassword
+  shell: /root/.jenkins/secrets/initialAdminPassword
+  register: result
+  - debug:
+    var: result
+    verbosity: 2
