@@ -2,5 +2,5 @@
 # handlers file for roles/jenkins
 - name: Make sure a service is running
   systemd:
-    state: started
+    state: restarted
     name: jenkins
