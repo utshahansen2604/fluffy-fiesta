@@ -17,3 +17,5 @@
 - name: Wait for the init password file
   wait_for:
     path: /root/.jenkins/secrets/initialAdminPassword
+- name: Display init password
+  shell: cat /root/.jenkins/secrets/initialAdminPassword
