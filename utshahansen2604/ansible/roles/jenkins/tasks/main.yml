@@ -18,6 +18,9 @@
     dest: /etc/systemd/system/jenkins.service
   notify:
      - restart-jenkins
+     
+- name: Force all notified handlers to run at this point, not waiting for normal sync points
+  meta: flush_handlers
 
 - name: Wait for the password file
   wait_for:
