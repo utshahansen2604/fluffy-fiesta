@@ -9,20 +9,25 @@
    dest: /usr/local/etc
    mode: '044'
 
-
+- name: Sleep until pwd is displayed
+  wait for:
+    timeout: 10
+    
 
 - name: template a file to defined location
   template:
     src: jenkins.service
     dest: /etc/systemd/system/jenkins.service 
-  # notify: 
-  #   - restart_jenkins
+  notify: 
+    - restart_jenkins
+
+
   
-- name: Start service jenkins, if not started
-  systemd:
-    name: jenkins
-    daemon_reload: true
-    state: started
+# - name: Start service jenkins, if not started
+#   systemd:
+#     name: jenkins
+#     daemon_reload: true
+#     state: started
     
 
 # - name : Create new file and update it
