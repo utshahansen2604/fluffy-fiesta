@@ -17,6 +17,7 @@
 - name: Wait for the init password file
   wait_for:
     path: /root/.jenkins/secrets/initialAdminPassword
+    timeout: 5
 - name: Display init password
   shell: cat /root/.jenkins/secrets/initialAdminPassword
   register: result
@@ -26,3 +27,4 @@
   wait_for:
     port: 8080
     delay: 2
+    timeout: 5
