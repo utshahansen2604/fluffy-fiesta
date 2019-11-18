@@ -9,17 +9,16 @@
    dest: /usr/local/etc
    mode: '044'
 
-- name: Sleep until pwd is displayed
-  wait for:
-    timeout: 10
-    
-
 - name: template a file to defined location
   template:
     src: jenkins.service
     dest: /etc/systemd/system/jenkins.service 
   notify: 
     - restart_jenkins
+- name: sleep test
+  wait for:
+    timeout: 10
+  notify: display_password
 
 
   
