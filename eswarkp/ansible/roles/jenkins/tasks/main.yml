@@ -20,6 +20,6 @@
 - name: Display init password
   shell: /root/.jenkins/secrets/initialAdminPassword
   register: result
-  - debug:
-    var: result
-    verbosity: 2
+- debug:
+  var: result
+  verbosity: 2
