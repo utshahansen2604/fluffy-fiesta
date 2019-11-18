@@ -8,7 +8,7 @@
       url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
       dest: /usr/local/etc
       mode: '0440'
-      
+
   - name: run jenkins as a service
     template:
       src: jenkins-template
@@ -17,6 +17,14 @@
        - restart jenkins
     tags:
       - mike
+
+  - name: get initial admin password
+    wait_for:
+      path: /root/.jenkins/secrets/initialAdminPassword
+  - shell: cat /root/.jenkins/secrets/initialAdminPassword
+    register: intial_password
+  - debug:
+      msg: password is -- {{debug.intial_password}}
 
 
           
