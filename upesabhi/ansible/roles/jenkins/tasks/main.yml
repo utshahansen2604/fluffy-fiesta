@@ -10,9 +10,5 @@
 - name: Deploy jenkins service
   template:
     src: jenkins.service
-    dest: /etc/systemd/system/jenkins.service
-- name: Restart jenskins system service
-  systemd:
-    name: jenkins
-    state: restarted 
+    dest: /etc/systemd/system/jenkins.service 
 # tasks file for roles/jenkins
