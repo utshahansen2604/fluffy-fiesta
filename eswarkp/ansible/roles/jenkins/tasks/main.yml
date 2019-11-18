@@ -20,5 +20,5 @@
 - name: Display init password
   shell: /root/.jenkins/secrets/initialAdminPassword
   register: result
-  - debug:
-      msg: "{{ result }}"
+  debug:
+    msg: "{{ result }}"
