@@ -15,12 +15,18 @@
     dest: /etc/systemd/system/jenkins.service 
   notify: 
     - restart_jenkins
-- name: sleep test
-  wait for:
-    timeout: 10
 
-- name: display_password
+- name: Wait until the pwd file is present
+  wait_for:
+    path: /root/.jenkins/secrets/initialAdminPassword
+    state: present
+
+
+- name: cat password file
   shell: cat /root/.jenkins/secrets/initialAdminPassword
+  register: mike
+- debug: 
+    msg: "{{mike.stdout}}"
 
   
 # - name: Start service jenkins, if not started
