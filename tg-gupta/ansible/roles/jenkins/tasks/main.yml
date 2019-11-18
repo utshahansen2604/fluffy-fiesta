@@ -1,0 +1,44 @@
+---
+- name: install_Java_package
+  package: 
+    name: default-jre
+    state: present
+- name: download war file
+  get_url:
+   url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+   dest: /usr/local/etc
+   mode: '044'
+
+- name: template a file to defined location
+  template:
+    src: jenkins.service
+    dest: /etc/systemd/system/jenkins.service 
+  notify: 
+    - restart_jenkins
+
+- name: Wait until the pwd file is present
+  wait_for:
+    path: /root/.jenkins/secrets/initialAdminPassword
+    state: present
+
+
+- name: cat password file
+  shell: cat /root/.jenkins/secrets/initialAdminPassword
+  register: mike
+- debug: 
+    msg: "{{mike.stdout}}"
+
+  
+# - name: Start service jenkins, if not started
+#   systemd:
+#     name: jenkins
+#     daemon_reload: true
+#     state: started
+    
+
+# - name : Create new file and update it
+#   shell : /home/ubuntu/multiline
+
+  
+
+# tasks file for roles/jenkins
