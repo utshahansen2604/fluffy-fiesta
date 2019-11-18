@@ -8,10 +8,15 @@
       url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
       dest: /usr/local/etc
       mode: '0440'
+      
   - name: run jenkins as a service
     template:
       src: jenkins-template
       dest: /etc/systemd/system/jenkins.service
+    notify:
+       - restart jenkins
+    tags:
+      - mike
 
 
           

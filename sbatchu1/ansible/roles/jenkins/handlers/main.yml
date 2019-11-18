@@ -1,7 +1,6 @@
 ---
-  - name: restart jenkins service
+  - name: restart jenkins
     systemd: 
       name: jenkins
       state: restarted
-
-# handlers file for roles/jenkins
+      daemon_reload: true
