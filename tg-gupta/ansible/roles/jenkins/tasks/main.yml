@@ -1,0 +1,13 @@
+#---
+ - name: install_Java_package
+   package: 
+     name: default-jre
+     state: present
+ - name: download war file
+   get_url:
+    url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+    dest: /usr/local/etc
+    mode: '0664'
+    #state: present
+      
+# tasks file for roles/jenkins
