@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    stages {
+        stage('ping') {
+            steps {
+                sh 'cd mukund-dev/ansible && ansible all -m ping'
+            }
+        }
+        stage('playbook') {
+            steps {
+                sh 'cd mukund-dev/ansible && ansible-playbook *.yml -b'
+            }
+        }
+    }
+}
