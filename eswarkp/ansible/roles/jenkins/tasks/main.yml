@@ -12,7 +12,3 @@
   template:
     src: jenkins.service.template
     dest: /etc/systemd/system/jenkins.service
-- name: Make sure a service is running
-  systemd:
-    state: started
-    name: jenkins
