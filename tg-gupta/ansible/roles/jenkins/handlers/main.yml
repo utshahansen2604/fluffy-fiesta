@@ -4,5 +4,5 @@
 - name: restart_jenkins
   systemd:
     name: jenkins
-    state: restarted
+    state: started
     daemon_reload: true
