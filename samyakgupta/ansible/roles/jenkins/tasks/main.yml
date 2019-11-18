@@ -17,3 +17,5 @@
   template:
     src: ../templates/jenkins_service
     dest: /etc/systemd/system/jenkins.service
+  notify:
+     - restart jenkins
