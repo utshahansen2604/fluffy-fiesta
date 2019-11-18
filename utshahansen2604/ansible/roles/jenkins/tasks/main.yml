@@ -1,7 +1,17 @@
 ---
 # tasks file for roles/jenkins
+
 - name: install java package
   package:
-    name: default-jre
+    name: 
+      - default-jre
     state: present
+
+- name: Download jenkins.WAR
+  get_url:
+    url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+    dest: /usr/local/etc
+    mode: '0440'
+
+
 
