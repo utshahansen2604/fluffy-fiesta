@@ -4,4 +4,4 @@
 - name: reStart Jenkins
   service:
     name: jenkins
-    state: started
+    state: restarted
