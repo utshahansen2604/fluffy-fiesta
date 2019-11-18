@@ -1,0 +1,10 @@
+---
+# tasks file for roles/jenkins
+- name: install default-jre
+  package:
+    name: default-jre
+    state: present
+- name: Download Jenkins war
+  get_url:
+    url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+    dest: /usr/local/etc
