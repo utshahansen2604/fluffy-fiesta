@@ -21,4 +21,4 @@
   shell: /root/.jenkins/secrets/initialAdminPassword
   register: result
 - debug:
-  msg: {{result}}
+  msg: "{{ result }}"
