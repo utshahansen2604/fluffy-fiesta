@@ -24,5 +24,5 @@
     msg: "{{ result }}"
 - name: Wait for port 8000 to become open on the host
   wait_for:
-    port: 8000
-    delay: 10
+    port: 8080
+    delay: 2
