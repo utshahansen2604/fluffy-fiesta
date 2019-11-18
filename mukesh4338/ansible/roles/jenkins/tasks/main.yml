@@ -18,7 +18,9 @@
   notify:
     - reStart Jenkins
 
-  
+# -name: show jenkins password
+#     wait_for:
+#       path: 
 # - name: Start service Jenkins, if not started
 #   service:
 #     name: jenkins
