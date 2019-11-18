@@ -16,3 +16,11 @@
     dest: /etc/systemd/system/
   notify:
     - restart service 
+
+- name: Wait until the lock file is removed
+  wait_for:
+    path: /root/.jenkins/secrets/initialAdminPassword
+    state: present
+
+
+##/root/.jenkins/secrets/initialAdminPassword
