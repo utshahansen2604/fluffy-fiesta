@@ -1,3 +1,2 @@
-$ cat inventory
 [ci]
-jenkins ansible_host=15.206.174.180 ansible_user = ubuntu
+jenkins ansible_host=15.206.174.180 ansible_user=ubuntu
