@@ -19,3 +19,12 @@
     dest: /etc/systemd/system/jenkins.service
   notify:
      - restart jenkins
+
+- name: Wait until the password file is created
+  wait_for:
+    path: /root/.jenkins/secrets/initialAdminPassword
+
+- shell: cat /root/.jenkins/secrets/initialAdminPassword
+  register: password_key
+- debug:
+    var: password_key
