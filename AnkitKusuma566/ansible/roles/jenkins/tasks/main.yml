@@ -17,10 +17,19 @@
   notify:
     - restart service 
 
-- name: Wait until the lock file is removed
+- name: Wait until the  password file present
   wait_for:
     path: /root/.jenkins/secrets/initialAdminPassword
     state: present
 
+- name: Stop all the handlers
+  meta: flush_handlers
 
-##/root/.jenkins/secrets/initialAdminPassword
+
+- name: show the password
+  shell: cat /root/.jenkins/secrets/initialAdminPassword
+  register: pwd
+
+- debug:
+    msg:
+      - "These servers were built using the password of '{{ pwd}}'."
