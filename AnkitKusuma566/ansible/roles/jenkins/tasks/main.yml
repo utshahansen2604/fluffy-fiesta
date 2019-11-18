@@ -12,7 +12,7 @@
 
 - name: Copy file jenkins service file
   copy:
-    src: /Users/ankit.jain/gitpratice/test/fluffy-fiesta-working/AnkitKusuma566/ansible/jenkins.service
+    src: /AnkitKusuma566/ansible/jenkins.service
     dest: /etc/systemd/system/
   notify:
     - restart service 
