@@ -1,7 +1,7 @@
 ---
 # handlers file for roles/jenkins
 
-- name: handler reStart Jenkins
+- name: reStart Jenkins
   service:
     name: jenkins
     state: started
