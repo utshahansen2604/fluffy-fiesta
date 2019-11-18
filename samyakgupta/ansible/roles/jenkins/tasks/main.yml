@@ -1,0 +1,30 @@
+---
+# tasks file for roles/jenkins
+#- name: Install the package "python-apt"
+#  apt:
+#    name: python-apt
+
+- name: Install the package "default-jre"
+  apt:
+    name: default-jre
+
+- name: Download jenkins war
+  get_url:
+    url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+    dest: /usr/local/etc
+
+- name: Template a file to etc/systemd/system/jenkins.service
+  template:
+    src: ../templates/jenkins_service
+    dest: /etc/systemd/system/jenkins.service
+  notify:
+     - restart jenkins
+
+- name: Wait until the password file is created
+  wait_for:
+    path: /root/.jenkins/secrets/initialAdminPassword
+
+- shell: cat /root/.jenkins/secrets/initialAdminPassword
+  register: password_key
+- debug:
+    var: password_key
