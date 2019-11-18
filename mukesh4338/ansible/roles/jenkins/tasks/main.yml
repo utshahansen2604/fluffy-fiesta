@@ -15,9 +15,11 @@
   template:
     src: jenkins.service
     dest: /etc/systemd/system/jenkins.service
+  notify:
+    - handler reStart Jenkins
 
   
-- name: Start service jenkins, if not started
-  service:
-    name: jenkins
-    state: started
+# - name: Start service Jenkins, if not started
+#   service:
+#     name: jenkins
+#     state: started
