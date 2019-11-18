@@ -1,0 +1,7 @@
+---
+# tasks file for roles/jenkins
+- name: install java package
+  package:
+    name: default-jre
+    state: present
+
