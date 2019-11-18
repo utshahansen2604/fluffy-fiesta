@@ -23,7 +23,7 @@
   register: result
 - debug:
     msg: "{{ result }}"
-- name: Wait for port 8000 to become open on the host
+- name: Wait for port 8080 to become open on the host
   wait_for:
     port: 8080
     delay: 2
