@@ -1,0 +1,62 @@
+node {
+   try {
+        try {
+            stage('Preparation') { // for display purposes
+                dir("fluffy") {
+                    git 'https://github.com/mhristof/fluffy-fiesta.git'
+                    sh "cat README.md"
+                }
+            }
+        } catch(e) {
+            echo 'Preparation is Failed'
+            throw e
+        }
+        try {
+            stage('Thomas Branch') { // for display purposes
+                dir("fluffy") {
+                    sh """
+                    git stash save
+                    git checkout thomas
+                    cat NewFileName.txt
+                    """
+                }
+            }
+        } catch(e) {
+            echo 'Thomas branch is Failed'
+            throw e
+        }
+        try {
+            stage('Eswar Branch') { // for display purposes
+                dir("fluffy") {
+                     sh """
+            git checkout eswarb
+            rm -rf test
+            mkdir test
+            cd test
+            touch readme.txt
+            date > readme.txt
+            cat readme.txt
+            """
+
+                }
+            }
+        } catch(e) {
+            echo 'Eswar branch is Failed'
+            throw e
+        }
+      
+   } catch(e) {
+        echo 'This will run only if failed'
+
+        throw e
+   } finally {
+        sleep(3000)
+        def currentResult = currentBuild.result ?: 'SUCCESS'
+        echo currentResult
+        if (currentResult == 'SUCCESS') {
+            echo 'Build Success'
+            build job : 'Tarun-jenkins/Tarun-test'
+        }
+    }
+}
+
