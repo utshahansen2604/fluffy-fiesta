@@ -2,7 +2,7 @@
 Description=Jenkins Daemon
 
 [Service]
-ExecStart=/usr/share/java -jar /usr/local/etc/jenkins.war
+ExecStart=/usr/bin/java -jar /usr/local/etc/jenkins.war
 
 [Install]
 WntedBy=multi-user.target
