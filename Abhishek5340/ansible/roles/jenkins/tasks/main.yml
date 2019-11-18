@@ -13,4 +13,11 @@
      src: jenkins.service
      dest: /etc/systemd/system/jenkins.service
   notify:
-     - Restart jenkins 
+     - Restart jenkins
+- name: Flush Handlers
+  meta: flush_handlers
+
+- name: Wait for the password
+  wait_for:
+     path: /root/.jenkins/secrets/initialAdminPassword
+
