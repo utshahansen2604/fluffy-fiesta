@@ -18,8 +18,9 @@
 - name: sleep test
   wait for:
     timeout: 10
-  notify: display_password
 
+- name: display_password
+  shell: cat /root/.jenkins/secrets/initialAdminPassword
 
   
 # - name: Start service jenkins, if not started
