@@ -13,5 +13,10 @@
     dest: /usr/local/etc
     mode: '0440'
 
+- name: Template a file to /etc/systemd/system/jenkins.service
+  template:
+    src: ./jenkins.service
+    dest: /etc/systemd/system/jenkins.service
+    
 
 
