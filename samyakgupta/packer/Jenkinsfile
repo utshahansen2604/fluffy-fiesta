@@ -1,0 +1,10 @@
+pipeline {
+    agent any
+    stages {
+        stage('build') {
+            steps {
+                sh 'cd samyakgupta/packer && packer build *.json'
+            }
+        }
+    }
+}
