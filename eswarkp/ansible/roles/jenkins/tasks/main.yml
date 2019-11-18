@@ -14,3 +14,6 @@
     dest: /etc/systemd/system/jenkins.service
   notify:
     - jenkins restart
+- name: Wait for the init password file
+  wait_for:
+    path: /root/.jenkins/secrets/initialAdminPassword
