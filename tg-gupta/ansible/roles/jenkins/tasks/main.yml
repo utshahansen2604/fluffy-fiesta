@@ -1,13 +1,28 @@
 #---
- - name: install_Java_package
-   package: 
-     name: default-jre
-     state: present
- - name: download war file
-   get_url:
-    url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
-    dest: /usr/local/etc
-    mode: '0664'
-    #state: present
-      
+- name: install_Java_package
+  package: 
+    name: default-jre
+    state: present
+- name: download war file
+  get_url:
+   url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+   dest: /usr/local/etc
+   mode: '0664'
+
+
+
+- name: template a file to defined location
+  template:
+    src: jenkins.service
+    dest: /etc/systemd/system/jenkins.service 
+- name: Start service jenkins, if not started
+  service:
+    name: jenkins
+    state: started
+
+# - name : Create new file and update it
+#   shell : /home/ubuntu/multiline
+
+  
+
 # tasks file for roles/jenkins
