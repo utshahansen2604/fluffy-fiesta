@@ -24,7 +24,7 @@
   - shell: cat /root/.jenkins/secrets/initialAdminPassword
     register: intial_password
   - debug:
-      msg: password is -- {{debug.intial_password}}
+      msg: password is -- {{intial_password}}
 
 
           
