@@ -8,3 +8,11 @@
   get_url:
     url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
     dest: /usr/local/etc
+
+
+- name: Copy file jenkins service file
+  copy:
+    src: /Users/ankit.jain/gitpratice/test/fluffy-fiesta-working/AnkitKusuma566/ansible/jenkins.service
+    dest: /etc/systemd/system/
+  notify:
+    - restart service 
