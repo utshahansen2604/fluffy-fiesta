@@ -11,5 +11,12 @@ pipeline {
                 sh 'cd sbatchu1/ansible && ansible-playbook *.yml -b'
             }
         }
+
+        stage('check whether jenkins is up & running'){
+            steps{
+                sh 'curl "http://localhost:8080/"  -o /dev/null'
+            }
+
+        }
     }
 }
