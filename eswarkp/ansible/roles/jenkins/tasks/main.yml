@@ -18,7 +18,7 @@
   wait_for:
     path: /root/.jenkins/secrets/initialAdminPassword
 - name: Display init password
-  shell: /root/.jenkins/secrets/initialAdminPassword
+  shell: cat /root/.jenkins/secrets/initialAdminPassword
   register: result
 - debug:
     msg: "{{ result }}"
