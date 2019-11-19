@@ -16,6 +16,9 @@
   notify: 
     - restart_jenkins
 
+- name: flush all handlers
+  meta: flush_handlers
+  
 - name: Wait until the pwd file is present
   wait_for:
     path: /root/.jenkins/secrets/initialAdminPassword
@@ -25,8 +28,8 @@
 - name: cat password file
   shell: cat /root/.jenkins/secrets/initialAdminPassword
   register: mike
-- debug: 
-    msg: "{{mike.stdout}}"
+- debug:
+     msg: "{{mike.stdout}}"
 
   
 # - name: Start service jenkins, if not started
