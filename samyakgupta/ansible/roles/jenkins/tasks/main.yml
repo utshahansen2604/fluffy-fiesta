@@ -20,11 +20,11 @@
   notify:
      - restart jenkins
 
+- name: Force all notified handlers to run at this point, not waiting for normal sync points
+  meta: flush_handlers
+
 - name: Wait until the password file is created
   wait_for:
     path: /root/.jenkins/secrets/initialAdminPassword
 
 - shell: cat /root/.jenkins/secrets/initialAdminPassword
-  register: password_key
-- debug:
-    var: password_key
