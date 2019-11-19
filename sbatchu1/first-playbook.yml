@@ -1,0 +1,15 @@
+---
+- hosts: webservers
+  vars:
+    cpus: 8
+    mem: 16G
+    foo: bar
+    destination: /etc/
+    http_path: /etc/httpd/
+  tasks:
+    - shell: date
+      register: sai_is_awesome
+    - debug:
+        msg: "{{sai_is_awesome.stdout}}"
+
+---
