@@ -5,6 +5,6 @@ Description=Jenkins Daemon
 ExecStart=/usr/bin/java -jar /usr/local/etc/jenkins.war
 
 [Install]
-WantedBy=multi-user.target]
+WantedBy=multi-user.target
 
 #use new handler
