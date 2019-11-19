@@ -1,0 +1,5 @@
+- name: install the latest version of Ubuntu
+  package:
+    name:
+      - Ubuntu
+    state: latest
