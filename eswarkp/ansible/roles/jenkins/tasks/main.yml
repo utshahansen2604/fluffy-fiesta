@@ -1,9 +1,9 @@
 ---
 # tasks file for roles/jenkins
-- name: install default-jre
-  package:
-    name: default-jre
-    state: present
+# - name: install default-jre
+#   package:
+#     name: default-jre
+#     state: present
 - name: Download Jenkins war
   get_url:
     url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
@@ -14,20 +14,25 @@
     dest: /etc/systemd/system/jenkins.service
   notify:
     - jenkins restart
+
+- name: Force all notified handlers to run at this point, not waiting for normal sync points
+  meta: flush_handlers
+
 - name: Wait for the init password file
   wait_for:
     path: /root/.jenkins/secrets/initialAdminPassword
-    timeout: 5
+
 - name: Display init password
   shell: cat /root/.jenkins/secrets/initialAdminPassword
   register: result
+
 - debug:
     msg: "{{ result }}"
+
 - name: Wait for port 8080 to become open on the host
   wait_for:
     port: 8080
-    delay: 2
-    timeout: 5
+
 - name: Check that a page returns a status 200 and fail if the word Authentication required is not in the page contents
   uri:
     url: http://localhost:8080
