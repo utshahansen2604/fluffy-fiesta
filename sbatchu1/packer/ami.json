@@ -14,7 +14,7 @@
         "ami_name": "jenkins-sbatchu1",
       
         "tags":{
-            "owner": "sbatchu1",
+            "Name": "sbatchu1",
             "OS": "ubuntu"
         }
        
@@ -23,7 +23,7 @@
 
         {
             "type": "ansible",
-            "playbook_file": "/Users/sairamgopal.batchu/fluffy-fiesta/sbatchu1/ansible/jenkins.yml",
+            "playbook_file": "../ansible/jenkins.yml",
             "extra_arguments": ["-b"]
         }
 
