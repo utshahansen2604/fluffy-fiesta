@@ -4,9 +4,12 @@
       "aws_secret_key": ""
     },
     "provisioners": [
+        
         {
           "type": "ansible",
-          "playbook_file": "./playbook.yml"
+          "extra_arguments": ["-b"],
+          "playbook_file": "./ansible/jenkins.yml"
+          
         }
       ],
     "builders": [{
@@ -14,19 +17,10 @@
       "access_key": "{{user `aws_access_key`}}",
       "secret_key": "{{user `aws_secret_key`}}",
       "region": "ap-south-1",
-      "source_ami": "ami-0123b531fc646552f",
+      "source_ami": "ami-021cfd2de7e247ca6",
       "instance_type": "t2.micro",
       "ssh_username": "ubuntu",
-      "ami_name": "jenkins-ankit",
-      "source_ami_filter": {
-        "filters": {
-        "virtualization-type": "hvm",
-        "name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*",
-        "root-device-type": "ebs"
-        },
-        "owners": ["099720109477"],
-        "most_recent": true
-      }
+      "ami_name": "jenkins-ankit-566"
     }]
   }
 
