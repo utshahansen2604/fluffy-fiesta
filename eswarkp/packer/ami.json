@@ -9,10 +9,20 @@
       "access_key": "{{user `aws_access_key`}}",
       "secret_key": "{{user `aws_secret_key`}}",
       "region": "ap-south-1",
-      "source_ami": "ami-021cfd2de7e247ca6",
+      "source_ami": "ami-05ae0b89b42bc07dd",
       "instance_type": "t2.micro",
       "ssh_username": "ubuntu",
-      "ami_name": "eswarkp-jenkins-ami-2"
+      "ami_name": "eswarkp-jenkins-ami {{timestamp}}",
+      "run_tags": {
+        "Name": "eswarkp"
+      },
+      "tags": {
+        "OS_Version": "Ubuntu",
+        "Release": "Latest",
+        "Base_AMI_Name": "{{ .SourceAMIName }}",
+        "Extra": "{{ .SourceAMITags.TagName }}",
+        "Name": "eswarkp"
+      }
     }
   ],
   "provisioners": [
