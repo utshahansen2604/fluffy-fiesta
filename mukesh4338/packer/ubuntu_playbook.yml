@@ -1,0 +1,2 @@
+- name: Upgrade all packages to the latest versions
+  apt: update_cache=yes upgrade=full
