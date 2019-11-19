@@ -9,9 +9,11 @@
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "ap-south-1",
     "source_ami": "ami-05ae0b89b42bc07dd",
+    "run_tags": {"name" : "Yogendra_VM" },
+    "tags" : {"name": "Yogendra_image"},
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
-    "ami_name": "yogendraKS_ami_ubuntu_1"
+    "ami_name": "yogendraKS_ami_ubuntu_2"
   }], 
   "provisioners": [
     {
