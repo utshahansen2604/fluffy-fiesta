@@ -1,0 +1,25 @@
+{
+    "variables": {
+        "aws_access_key": "",
+        "aws_secret_key": ""
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "region": "ap-south-1",
+            "source_ami": "ami-021cfd2de7e247ca6",
+            "instance_type": "t2.micro",
+            "ssh_username": "ubuntu",
+            "ami_name": "mukund-jenkins-ami_1"
+        }
+    ],
+    "provisioners":[
+        {
+            "type": "ansible",
+            "playbook_file": "../ansible/jenkins.yml",
+            "extra_arguments": ["-b"]
+          }
+    ] 
+ }
