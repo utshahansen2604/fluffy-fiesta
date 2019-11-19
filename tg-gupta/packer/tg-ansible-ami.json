@@ -19,17 +19,21 @@
       },
     
     "instance_type": "t2.micro",
-    "force_deregister": "true",
-    "force_delete_snapshot": "true",
     "ssh_username": "ubuntu",
-    "ami_name": "jenkins-tg-gupta{{isotime | clean_resource_name}}"
-    
+    "ami_name": "jenkins-tg-gupta-{{isotime | clean_resource_name}}",
+    "tags": {
+        "OS_Version": "Ubuntu",
+        "Release": "Latest",
+        "Base_AMI_Name": "{{ .SourceAMIName }}",
+        "Extra": "{{ .SourceAMITags.TagName }}",
+        "Name": "Tarun"
+  }
   }],
   "provisioners": [
     {
       "type": "ansible",
-      "playbook_file": "/Users/tarun.gupta/work_git/fluffy-fiesta/tg-gupta/ansible/jenkins.yml",
+      "playbook_file": "../ansible/jenkins.yml",
       "extra_arguments": ["-b"]
     }
-  ]
-}
+                ]
+    }
