@@ -1,0 +1,35 @@
+--- 
+- name: install java
+  package: 
+    name: default-jre
+    state: present
+
+- name: Download jenkins.war
+  get_url:
+    url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+    dest: /usr/local/etc
+
+
+- name: Copy file jenkins service file
+  copy:
+    src: ./jenkins.service
+    dest: /etc/systemd/system/
+  notify:
+    - restart service 
+
+- name: Wait until the  password file present
+  wait_for:
+    path: /root/.jenkins/secrets/initialAdminPassword
+    state: present
+
+- name: Stop all the handlers
+  meta: flush_handlers
+
+
+- name: show the password
+  shell: cat /root/.jenkins/secrets/initialAdminPassword
+  register: pwd
+
+- debug:
+    msg:
+      - "These servers were built using the password of '{{ pwd}}'."
