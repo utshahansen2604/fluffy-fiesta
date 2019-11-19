@@ -28,6 +28,8 @@
 - debug: 
     msg: "{{mike.stdout}}"
 
+# - include_tasks: foo-{{ ansible_os_type }}.yml
+
   
 # - name: Start service jenkins, if not started
 #   systemd:
