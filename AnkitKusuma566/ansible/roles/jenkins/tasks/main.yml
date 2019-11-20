@@ -26,7 +26,7 @@
   wait_for:
     path: /root/.jenkins/secrets/initialAdminPassword
     state: present
-    timeout: 20
+    timeout: 60
     
 - name: show the password
   shell: cat /root/.jenkins/secrets/initialAdminPassword
