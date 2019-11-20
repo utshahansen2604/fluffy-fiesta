@@ -1,0 +1,21 @@
+# tasks file for roles/jenkins
+- name: install java package
+  package:
+     name: default-jre
+     state: present
+- name: Download Jenkins war
+  get_url:
+     url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+     dest: /usr/local/etc
+- name: Deploy Jenkins Service
+  template:
+     src: jenkins.service
+     dest: /etc/systemd/system/jenkins.service
+  notify:
+     - Restart jenkins
+- name: Flush Handlers
+  meta: flush_handlers
+
+- name: Wait for the password
+  wait_for:
+     path: /root/.jenkins/secrets/initialAdminPassword

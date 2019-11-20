@@ -1,0 +1,30 @@
+---
+  - name: install java
+    package: 
+      name: default-jre
+      state: present
+  - name: download jenkins war file
+    get_url:
+      url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+      dest: /usr/local/etc
+      mode: '0440'
+
+  - name: run jenkins as a service
+    template:
+      src: jenkins-template
+      dest: /etc/systemd/system/jenkins.service
+    notify:
+       - restart jenkins
+    tags:
+      - mike
+
+  - name: get initial admin password
+    wait_for:
+      path: /root/.jenkins/secrets/initialAdminPassword
+  - shell: cat /root/.jenkins/secrets/initialAdminPassword
+    register: intial_password
+  - debug:
+      msg: password is -- {{intial_password}}
+
+
+          

@@ -7,4 +7,3 @@
     daemon_reload: yes
     enabled: yes
     name: jenkins
-

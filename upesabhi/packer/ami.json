@@ -1,0 +1,47 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": ""
+  },
+
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "ap-south-1",
+    "source_ami": "ami-05ae0b89b42bc07dd",
+    "instance_type": "t2.micro",
+    "ssh_username": "ubuntu",
+    "ami_name": "jenkins-upesabhi-ami_latest_ubuntu_final2"
+  }],
+  "provisioners":[
+    {
+        "type": "shell",
+        "inline": [
+            "sudo apt-get update",
+            "sudo apt-get install -y default-jre"
+        ]
+    },
+    {
+          "type": "ansible",
+          "playbook_file": "../ansible/jenkins.yml",
+          "extra_arguments": "-b"
+        
+        },
+    {
+          "type": "shell",
+          "inline": 
+              ["sudo service jenkins restart"]
+      
+              
+          
+      }
+
+        
+    
+]
+
+  
+
+}
+
