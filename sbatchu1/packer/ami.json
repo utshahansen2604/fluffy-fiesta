@@ -11,11 +11,16 @@
         "source_ami": "ami-05ae0b89b42bc07dd",
         "instance_type": "t2.micro",
         "ssh_username": "ubuntu",
-        "ami_name": "jenkins-sbatchu1",
+        "ami_name": "jenkins-sbatchu1-latest-{{timestamp}}",
       
         "tags":{
             "Name": "sbatchu1",
             "OS": "ubuntu"
+        },
+
+        "run_tags": {
+            "Name": "sbatchu1",
+            "type": "jenkins-machine"
         }
        
     }],
