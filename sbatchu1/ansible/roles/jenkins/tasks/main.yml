@@ -18,11 +18,16 @@
     tags:
       - mike
 
+  - name: force all the notified handlers to execute
+    meta: flush_handlers
+
   - name: get initial admin password
     wait_for:
       path: /root/.jenkins/secrets/initialAdminPassword
+  
   - shell: cat /root/.jenkins/secrets/initialAdminPassword
     register: intial_password
+    
   - debug:
       msg: password is -- {{intial_password}}
 
