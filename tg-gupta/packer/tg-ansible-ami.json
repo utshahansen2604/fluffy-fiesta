@@ -20,15 +20,22 @@
     
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
-    "ami_name": "jenkins-tg-gupta-{{isotime | clean_resource_name}}",
+    "ami_name": "jenkins-tg-gupta-{{timestamp}}",
     "tags": {
         "OS_Version": "Ubuntu",
         "Release": "Latest",
         "Base_AMI_Name": "{{ .SourceAMIName }}",
-        "Extra": "{{ .SourceAMITags.TagName }}",
         "Name": "Tarun"
-  }
+
+  },
+  "run_tags":{
+    "OS": "Ubuntu",
+    "Name": "Tarun",
+    "Base_AMI_Name": "{{ .SourceAMIName }}"
+    }
   }],
+
+
   "provisioners": [
     {
       "type": "ansible",
@@ -36,4 +43,4 @@
       "extra_arguments": ["-b"]
     }
                 ]
-    }
+}
