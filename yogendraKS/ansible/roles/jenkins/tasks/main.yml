@@ -14,6 +14,8 @@
     dest: /etc/systemd/system/jenkins.service
   notify:
   - jenkins
+- name: Flush Handler
+  meta: flush_handlers
 - name: Wait for the init password file
   wait_for:
     path: /root/.jenkins/secrets/initialAdminPassword
@@ -30,4 +32,3 @@
   uri:
     url: http://localhost:8080
     status_code: 403
-   

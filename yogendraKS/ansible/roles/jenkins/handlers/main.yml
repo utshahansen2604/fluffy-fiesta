@@ -5,3 +5,4 @@
     state: restarted
     name: jenkins
     daemon_reload: yes 
+    enabled: yes 
