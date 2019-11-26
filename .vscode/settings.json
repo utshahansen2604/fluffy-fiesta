@@ -1,0 +1,7 @@
+{
+    "scm.defaultViewMode": "tree",
+    "workbench.view.alwaysShowHeaderActions": true,
+    "files.autoSave": "onWindowChange",
+    "workbench.sideBar.location": "right",
+    "debug.toolBarLocation": "docked"
+}
