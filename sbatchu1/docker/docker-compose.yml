@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    command:
+      - date
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/etc/foo/bar
+
+    #image: jenkins
+  foobar:
+    image: jenkins/jenkins:lts
+    ports:
+      - 8081:8080
+    volumes:
+      - jen_vol:/etc/foo/bar:ro
+    depends_on:
+      - mysql_db
+  mysql_db:
+    image: mysql
+
+volumes:
+  data:
+  data_asdf:
+  jen_vol:
