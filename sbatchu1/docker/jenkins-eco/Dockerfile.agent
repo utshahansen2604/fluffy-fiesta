@@ -1,4 +1,9 @@
 FROM ubuntu
 
+RUN apt-get update && apt-get install curl wget openjdk-8-jre -y
+
 COPY ./connect-node.sh /connect-node.sh
 COPY ./run-connect.sh /run-connect.sh
+
+
+# RUN chmod +x run-connect.sh

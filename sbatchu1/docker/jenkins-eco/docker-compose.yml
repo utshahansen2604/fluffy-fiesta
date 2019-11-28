@@ -2,8 +2,9 @@ version: '2'
 
 services:
   jenkins-master:
-    build:
-      context: .
+    image: jenkins/jenkins:2.190.1
+    # build:
+    #   context: .
     volumes:
       - master_data:/root/.jenkins/secrets/
     ports:
@@ -18,20 +19,20 @@ services:
       - jenkins-master
     command:
       - /bin/bash
-      - -c
+      # - -c
       # - /connect-node.sh jenkins-master:8080 jenkins-agent admin:$(cat /root/jen-vol/initialAdminPassword)
-      - /run-connect.sh 
+      - /run-connect.sh  
   bastion:
     build:
       context: .
       dockerfile: 'Dockerfile.bastion' 
     volumes:
-      - master_data:/root/jen-vol:ro
+      - master_data:/etc/jen-vol:ro
     depends_on:
       - jenkins-master
     command:
       - /bin/bash
-      - -c
+      # - -c
       # - /connect-node.sh jenkins-master:8080 jenkins-agent admin:$(cat /root/jen-vol/initialAdminPassword)
       - /run-create.sh
 
