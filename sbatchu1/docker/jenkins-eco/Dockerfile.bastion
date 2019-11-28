@@ -1,0 +1,4 @@
+FROM ubuntu
+
+COPY ./create-node.sh /create-node.sh
+COPY ./run-create.sh /run-create.sh

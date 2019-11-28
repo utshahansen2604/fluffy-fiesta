@@ -1,0 +1,4 @@
+FROM ubuntu
+
+COPY ./connect-node.sh /connect-node.sh
+COPY ./run-connect.sh /run-connect.sh
