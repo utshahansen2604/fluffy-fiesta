@@ -11,6 +11,4 @@ while [[ ! -f /root/jen-vol/initialAdminPassword ]]; do echo .; sleep 1; done
 
 password=$(cat /root/jen-vol/initialAdminPassword)
 
-echo $password
-
 bash /create-node.sh http://jenkins-master:8080 jenkins-agent admin:$password
