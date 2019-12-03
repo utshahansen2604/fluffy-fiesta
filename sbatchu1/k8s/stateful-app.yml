@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sai-stateful-app
+  name: sai-stateful-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sai-stateful-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sai-stateful-app
+    spec:
+      containers:
+      - image: mysql
+        name: mysql
+        env:
+          # Use secret in real usage
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+        ports:
+        - containerPort: 3306
+          name: mysql
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: sai-k8s-ebs  #name of the volume to mount on
+      volumes:
+      - name: sai-k8s-ebs
+        awsElasticBlockStore:
+          volumeID: vol-08c06626e0b9f7a4f
+      nodeSelector:
+        failure-domain.beta.kubernetes.io/zone: ap-south-1b
+status: {}
+---
