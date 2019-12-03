@@ -1,0 +1,43 @@
+---
+apiVersion: v1
+data:
+  VAULT_DEV_ROOT_TOKEN_ID: sai-is-awesome
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: sai-vault-token
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sai-vault
+  name: sai-vault
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sai-vault
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sai-vault
+    spec:
+      containers:
+      - image: vault
+        name: vault
+        resources: {}
+        env:
+          # Define the environment variable
+          - name: VAULT_DEV_ROOT_TOKEN_ID
+            valueFrom:
+              configMapKeyRef:
+                # The ConfigMap containing the value you want to assign to SPECIAL_LEVEL_KEY
+                name: sai-vault-token
+                # Specify the key associated with the value
+                key: VAULT_DEV_ROOT_TOKEN_ID
+status: {}
+---
