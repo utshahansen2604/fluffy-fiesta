@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+  jenkins:
+    build: 
+      context: .
+      dockerfile: 'dockerfile.tarun'
+      #docker build -t jenkins-dc  --file Dockerfile .
+    ports: 
+      - 8080:8080
+    command: date
+      #http://localhost:8080
+# docker run -v data_test:/etc/foo/bar -v data_test:/etc/foo/baz:ro <image_name> bash      
+    volumes:
+      - data_test:/etc/foo/bar
+      - data_test:/etc/foo/baz:ro
+#docker volume create --name data_test
+volumes:
+  data_test:
+
+  # foobar:
+  #   image: jenkins/jenkins:lts
+  #   ports:
+  #     - 8081:8080
+      #docker build -t jenkins-dc  --file Dockerfile .
+    # image: jenkins/jenkins:lts
+    #docker run -it --name jenkins jenkins/jenkins:lts
+
+    

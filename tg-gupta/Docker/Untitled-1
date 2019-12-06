@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  jenkins:
+    image: jenkins:jenkins/lts
+    ports: 
+      - 8080:8080
+
+    volumes:
+      - data_test:/etc/foo/bar
+
+volumes:
+  data_test:
+    
