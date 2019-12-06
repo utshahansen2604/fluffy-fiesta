@@ -1,0 +1,103 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mib-volume
+  labels:
+    type: local
+spec:
+  storageClassName: gp2
+  capacity:
+    storage: 15Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/Users/tarun.gupta/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mib-volume
+spec:
+  storageClassName: gp2
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 14Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: jenkinsmaster
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: jenkinsmaster
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: jenkinsmaster
+  name: jenkinsmaster
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: jenkinsmaster
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: jenkinsmaster
+    spec:
+      # nodeSelector: # .spec.template.spec
+      #   failure-domain.beta.kubernetes.io/zone: ap-south-1a
+      containers:
+      - image: jenkins/jenkins:2.190.1
+        name: jenkinsmaster
+        ports:
+        - containerPort: 8080
+        resources: {}
+        volumeMounts:
+          - mountPath: /var
+            name: jenkins
+            # defaultMode: 0777
+          -  name: config-volume
+             mountPath: /usr/config
+             
+      - image: jenkins/jenkins:2.190.1
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 0
+        name: master-script
+        ports:
+        - containerPort: 8080
+        resources: {}
+        volumeMounts:
+          - mountPath: /etc/temp2
+            name: jenkins
+            # defaultMode: 0777
+          -  name: config-volume
+             mountPath: /usr/config
+             
+        # command: ["/bin/bash", "/usr/config/create-node.sh","http://jenkinsmaster:8080","mib-node","admin:$(cat /etc/temp2/jenkins_home/secrets/initialAdminPassword)"]
+          command: ["bin/bash","cd /usr"]
+      volumes:
+      - name: jenkins
+        persistentVolumeClaim:
+          claimName: mib-volume
+      - name: config-volume
+        configMap:
+         name: create-master
+status: {}
+---
