@@ -36,7 +36,7 @@ spec:
       - name: sai-k8s-ebs
         awsElasticBlockStore:
           volumeID: vol-08c06626e0b9f7a4f
-      nodeSelector:
+      nodeSelector: #choose node on which the pod should run
         failure-domain.beta.kubernetes.io/zone: ap-south-1b
 status: {}
 ---
