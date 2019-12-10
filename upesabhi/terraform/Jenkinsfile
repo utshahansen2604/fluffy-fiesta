@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    stages {
+        stage('init') {
+            steps {
+                sh 'cd upesabhi/terraform && terraform init -no-color'
+            }
+        }
+        stage('plan') {
+            steps {
+                sh 'cd upesabhi/terraform && terraform plan -no-color -out tf.plan'
+            }
+        }
+        stage('apply') {
+            steps {
+                sh 'cd upesabhi/terraform && terraform apply -auto-approve tf.plan'
+            }
+        }
+        stage('destroy') {
+            steps {
+                sh 'cd upesabhi/terraform && terraform destroy -auto-approve'
+            }
+        }
+    }
+}

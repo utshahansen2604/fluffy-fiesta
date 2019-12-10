@@ -17,14 +17,29 @@
        - restart jenkins
     tags:
       - mike
+  
+  - name: flush all the notified handlers for execution
+    meta: flush_handlers
+
+  - name: force all the notified handlers to execute
+    meta: flush_handlers
 
   - name: get initial admin password
     wait_for:
       path: /root/.jenkins/secrets/initialAdminPassword
+  
   - shell: cat /root/.jenkins/secrets/initialAdminPassword
     register: intial_password
+    
   - debug:
       msg: password is -- {{intial_password}}
+
+  - name: test jenkins is up and running
+    uri:
+      url: http://13.232.106.195:8080/
+      method: GET
+      status_code: 403
+
 
 
           

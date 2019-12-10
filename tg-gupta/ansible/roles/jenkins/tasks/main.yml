@@ -1,8 +1,6 @@
 ---
-- name: install_Java_package
-  package: 
-    name: default-jre
-    state: present
+- shell: apt-get install -y default-jre
+
 - name: download war file
   get_url:
    url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
@@ -16,6 +14,9 @@
   notify: 
     - restart_jenkins
 
+- name: flush all handlers
+  meta: flush_handlers
+  
 - name: Wait until the pwd file is present
   wait_for:
     path: /root/.jenkins/secrets/initialAdminPassword
@@ -25,8 +26,10 @@
 - name: cat password file
   shell: cat /root/.jenkins/secrets/initialAdminPassword
   register: mike
-- debug: 
-    msg: "{{mike.stdout}}"
+- debug:
+     msg: "{{mike.stdout}}"
+
+# - include_tasks: foo-{{ ansible_os_type }}.yml
 
   
 # - name: Start service jenkins, if not started

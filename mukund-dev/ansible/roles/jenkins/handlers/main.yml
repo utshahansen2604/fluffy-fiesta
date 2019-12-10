@@ -4,4 +4,6 @@
   systemd:
     state: restarted
     name: jenkins
+    enabled: yes
+    daemon_reload: true
 # handlers file for roles/jenkins

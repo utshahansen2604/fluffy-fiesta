@@ -17,14 +17,14 @@
   notify:
     - restart service 
 
+- name: Stop all the handlers
+  meta: flush_handlers
+
 - name: Wait until the  password file present
   wait_for:
     path: /root/.jenkins/secrets/initialAdminPassword
     state: present
-
-- name: Stop all the handlers
-  meta: flush_handlers
-
+    timeout: 20
 
 - name: show the password
   shell: cat /root/.jenkins/secrets/initialAdminPassword

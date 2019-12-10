@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    stages {
+        stage('init') {
+            steps {
+                sh 'cd sbatchu1/terraform && terraform init -no-color'
+            }
+        }
+        stage('plan') {
+            steps {
+                sh 'cd sbatchu1/terraform && terraform plan -no-color -out tf.plan'
+            }
+        }
+        stage('apply') {
+            steps {
+                sh 'cd sbatchu1/terraform && terraform apply -auto-approve tf.plan'
+            }
+        }
+        stage('destroy') {
+            steps {
+                sh 'cd sbatchu1/terraform && terraform destroy -auto-approve'
+            }
+        }
+    }
+}
